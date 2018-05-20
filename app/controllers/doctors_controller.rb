@@ -28,7 +28,7 @@ class DoctorsController < ApplicationController
     	# puts parsed_json.to_json
       
       else 
-        render json: { errors: doctor.errors.full_messages }, status: 422
+        # render json: { errors: doctor.errors.full_messages }, status: 422
       end
 
   	# elsif action_name == "time_slot_of_doctor"
