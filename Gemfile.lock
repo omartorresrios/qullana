@@ -281,6 +281,9 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     trollop (2.1.2)
+    turbolinks (5.1.1)
+      turbolinks-source (~> 5.1)
+    turbolinks-source (5.1.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     websocket-driver (0.7.0)
@@ -306,6 +309,7 @@ DEPENDENCIES
   rails_12factor
   spring
   spring-watcher-listen (~> 2.0.0)
+  turbolinks
   tzinfo-data
 
 BUNDLED WITH
