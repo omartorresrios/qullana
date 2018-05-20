@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appointment_date: 2018-05-18 11:13:16
+
+two:
+  appointment_date: 2018-05-18 11:13:16

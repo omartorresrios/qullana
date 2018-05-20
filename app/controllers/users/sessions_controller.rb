@@ -2,7 +2,7 @@ class Users::SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
     if user = User.authenticate(email_or_username, params[:password])
-      render json: user, serializer: CurrentUserSerializer, status: 200
+      render json: user, serializer: UserSerializer, status: 200
     else
       render json: { errors: ['Invalid email and password'] }, status: 422
     end
@@ -13,4 +13,5 @@ class Users::SessionsController < ApplicationController
     def email_or_username
       params[:email] || params[:username]
     end
+    
 end

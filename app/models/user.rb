@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+
+  has_many :appointments
+  has_many :doctors, through: :appointments
+  belongs_to :center
+
   has_secure_password
   EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: { case_sensitive: false },
