@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_20_031816) do
+ActiveRecord::Schema.define(version: 2018_05_21_150147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2018_05_20_031816) do
   create_table "time_slots", force: :cascade do |t|
     t.integer "doctor_id"
     t.string "date"
-    t.datetime "start_time"
-    t.datetime "end_time"
+    t.string "start_time"
+    t.string "end_time"
     t.integer "duration"
     t.boolean "is_filled"
     t.datetime "created_at", null: false
