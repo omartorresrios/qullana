@@ -21,7 +21,7 @@ class DoctorsController < ApplicationController
     	end
 
     	render json: {
-      	  fulfillmentText: time_slot_array#.to_json#['availableTimeSlots']
+      	  fulfillmentText: time_slot_array.map(&:inspect).join(', ')#.to_json#['availableTimeSlots']
     	}#.to_json
     	# render json: time_slots, status: 200
     	# parsed_json = ActiveSupport::JSON.decode(time_slots.to_json)
