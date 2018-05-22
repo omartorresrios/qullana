@@ -1,20 +1,8 @@
 class DoctorsController < ApplicationController
 
   def all_doctors
-  	doctor = Doctor.find_by(name: params['name'])
-  	centers = doctor.centers
-  	all_centers_array = []
-
-	centers.each do |c|
-	  all_centers_array.push(c.name)
-    end
-
-  	if doctor
-  	  render json: {
-        fulfillmentText: "El Dr. #{doctor.name} se encuentra en: " + all_centers_array.map(&:inspect).join(', ')
-      }.to_json.gsub('\"', '')
-  	  #render json: all_centers_array, status: 200  
-  	end
+  	doctor = Doctor.all
+  	render json: doctor, status: 200
   	
   end
 
