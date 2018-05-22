@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
 
-  def all_doctors
+  def get_all_doctors
   	doctors = Doctor.all
   	render json: doctors, status: 200
   end
