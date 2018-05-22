@@ -3,7 +3,7 @@ class Doctor < ApplicationRecord
   has_many :time_slots
   has_many :appointments, through: :time_slots
   has_many :users, through: :appointments
-  belongs_to :center
+  has_many :centers
   belongs_to :department
   
   EMAIL_REGEX = /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i

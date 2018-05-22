@@ -1,8 +1,21 @@
 class DoctorsController < ApplicationController
 
   def all_doctors
-  	doctors = Doctor.all
-  	render json: doctors, status: 200
+  	doctor = Doctor.find_by(name: params['name'])
+  	centers = doctor.centers
+  	all_centers_array = []
+
+	centers.each do |c|
+	  all_centers_array.push(c.name)
+    end
+
+  	if doctor
+  	  render json: {
+        fulfillmentText: "El Dr. #{doctor.name} se encuentra en: " + all_centers_array.map(&:inspect).join(', ')
+      }.to_json.gsub('\"', '')
+  	  #render json: all_centers_array, status: 200  
+  	end
+  	
   end
 
   def main_action_dialogflow
@@ -62,10 +75,35 @@ class DoctorsController < ApplicationController
         }.to_json.gsub('\"', '')
   	  end
 
+  	elsif action == "show_doctor_centers"
 
-  	end
+  	  parameter = params['queryResult']['parameters']['doctor_name']
+  	  if doctor = Doctor.find_by(name: parameter)
+  	    centers = doctor.centers
+  	    all_centers_array = []
 
-    
+	    centers.each do |c|
+	      all_centers_array.push(c.name)
+        end
+
+  	    render json: {
+          fulfillmentText: "El Dr. #{doctor.name} se encuentra en: " + all_centers_array.map(&:inspect).join(', ')
+        }.to_json.gsub('\"', '')
+      else
+      	render json: {
+          fulfillmentText: "Lo sentimos, no tenemos registrado al Dr. #{parameter}"
+        }.to_json
+	  end
+
+	end
   end
-
 end
+
+
+
+
+
+
+
+
+

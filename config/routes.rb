@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
     get 'all_users' => 'users#all_users'
     get 'all_appointments' => 'appointments#all_appointments'
-    get 'all_doctors' => 'doctors#all_doctors'
+    post 'all_doctors' => 'doctors#all_doctors'
     get 'all_centers' => 'centers#all_centers'
     get 'all_departments' => 'departments#all_departments'
     post 'booking_appointment' => 'booking_appointment#create'
