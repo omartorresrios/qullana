@@ -12,6 +12,13 @@ class DoctorsController < ApplicationController
   	if action == "time_slot_of_doctor"
 
   	  parameter = params['queryResult']['parameters']['doctor_name']
+  	  all_doctors = Doctor.all
+
+  	  all_doctors_array = []
+
+  	  all_doctors.each do |ad|
+    	all_doctors_array.push(ad.name)
+      end
 
   	  if doctor = Doctor.find_by(name: parameter)
         time_slots = doctor.time_slots
@@ -25,18 +32,25 @@ class DoctorsController < ApplicationController
     	end
 
     	render json: {
-      	  fulfillmentText: "El Dr. #{doctor.name} tiene los siguientes horarios disponibles: " + time_slot_array.map(&:inspect).join(', ')#.to_json#['availableTimeSlots']
+      	  fulfillmentText: "El Dr. #{doctor.name} tiene los siguientes horarios disponibles: " + time_slot_array.map(&:inspect).join(', ')
     	}.to_json.gsub('\"', '')
       
       else
       	render json: {
-          fulfillmentText: "El Dr. #{parameter} no labora en este centro médico. Lo sentimos."
-        }.to_json
+          fulfillmentText: "Lo sentimos, el Dr. #{parameter} no trabaja en este centro médico. Pero sí tenemos a los siguientes: " + + all_doctors_array.map(&:inspect).join(', ')
+        }.to_json.gsub('\"', '')
       end
 
   	elsif action == "department_available"
   	  
   	  parameter = params['queryResult']['parameters']['department_name']
+	  all_departments = Department.all
+
+	  all_departments_array = []
+
+      all_departments.each do |ad|
+    	all_departments_array.push(ad.name)
+      end
 
   	  if department = Department.find_by(name: parameter)
   	  	render json: {
@@ -44,8 +58,8 @@ class DoctorsController < ApplicationController
         }.to_json
   	  else
   	  	render json: {
-          fulfillmentText: "Lo sentimos, no tenemos #{parameter}."
-        }.to_json
+          fulfillmentText: "Lo sentimos, no tenemos #{parameter}. Atendemos en estas especialidades: " + all_departments_array.map(&:inspect).join(', ')
+        }.to_json.gsub('\"', '')
   	  end
 
 
