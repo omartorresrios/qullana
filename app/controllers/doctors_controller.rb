@@ -1,9 +1,8 @@
 class DoctorsController < ApplicationController
 
   def all_doctors
-  	doctor = Doctor.all
-  	render json: doctor, status: 200
-  	
+  	doctors = Doctor.all
+  	render json: doctors, status: 200
   end
 
   def main_action_dialogflow
