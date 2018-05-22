@@ -77,7 +77,7 @@ class DoctorsController < ApplicationController
 
   	elsif action == "show_doctor_centers"
 
-  	  parameter = params['queryResult']['parameters']['doctor_name']
+  	  parameter = params['queryResult']['parameters']['center_doctor_name']
   	  if doctor = Doctor.find_by(name: parameter)
   	    centers = doctor.centers
   	    all_centers_array = []
