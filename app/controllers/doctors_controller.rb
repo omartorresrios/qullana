@@ -7,11 +7,11 @@ class DoctorsController < ApplicationController
 
   def main_action_dialogflow
 
-  	action = params['queryResult']['parameters']['doctor_name']
+  	action = params['queryResult']['action']
 
   	if action == "time_slot_of_doctor"
 
-  	  parameter = params['queryResult']['queryText']
+  	  parameter = params['queryResult']['parameters']['doctor_name']
 
   	  if doctor = Doctor.find_by(name: parameter)
         time_slots = doctor.time_slots
