@@ -7,32 +7,35 @@ class DoctorsController < ApplicationController
 
   def main_action_dialogflow
 
-  	action = params['queryResult']['action']
+  	action = params['queryResult']['parameters']['doctor_name']
 
   	if action == "time_slot_of_doctor"
-  	  if doctor = Doctor.find_by(name: params['queryResult']['queryText'])#params["name"])
+
+  	  parameter = params['queryResult']['queryText']
+
+  	  if doctor = Doctor.find_by(name: parameter)
         time_slots = doctor.time_slots
+
         time_slot_array = []
+
         time_slots.each do |time_slot|
     	  if time_slot.is_filled == false
     	  	time_slot_array.push(time_slot.start_time)
-    	    
     	  end
     	end
 
     	render json: {
       	  fulfillmentText: "El Dr. #{doctor.name} tiene los siguientes horarios disponibles: " + time_slot_array.map(&:inspect).join(', ')#.to_json#['availableTimeSlots']
     	}.to_json.gsub('\"', '')
-    	# render json: time_slots, status: 200
-    	# parsed_json = ActiveSupport::JSON.decode(time_slots.to_json)
-    	# puts parsed_json.to_json
       
-      else 
-        # render json: { errors: doctor.errors.full_messages }, status: 422
+      else
+      	render json: {
+          fulfillmentText: "El Dr. #{parameter} no labora en este centro médico. Lo sentimos."
+        }.to_json
       end
 
-  	# elsif action_name == "time_slot_of_doctor"
-  			
+  	elsif action_name == "department_available"
+  	  
   	end
 
     
