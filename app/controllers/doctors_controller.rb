@@ -34,8 +34,21 @@ class DoctorsController < ApplicationController
         }.to_json
       end
 
-  	elsif action_name == "department_available"
+  	elsif action == "department_available"
   	  
+  	  parameter = params['queryResult']['parameters']['department_name']
+
+  	  if department = Department.find_by(name: parameter)
+  	  	render json: {
+          fulfillmentText: "Está bien. ¿Con qué médico deseas la cita?"
+        }.to_json
+  	  else
+  	  	render json: {
+          fulfillmentText: "Lo sentimos, no tenemos #{parameter}."
+        }.to_json
+  	  end
+
+
   	end
 
     
