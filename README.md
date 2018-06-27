@@ -1,24 +1,7 @@
-# README
+# Qullana Chatbot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the API server for Qullana, which is a chatbot developed with Ruby on Rails and DialogFlow-Google (machine learning).
+It was developed for Lolimsa (www.lolimsa.com.pe), the most important software company in the health sector in Peru.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Contributions
+Feedbacks, and issue reports are more than welcome :)
